@@ -1,0 +1,150 @@
+#root {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 2rem;
+  text-align: left;
+}
+
+.logo {
+  height: 6em;
+  padding: 1.5em;
+  will-change: filter;
+  transition: filter 300ms;
+}
+.logo:hover {
+  filter: drop-shadow(0 0 2em #646cffaa);
+}
+.logo.react:hover {
+  filter: drop-shadow(0 0 2em #61dafbaa);
+}
+
+@keyframes logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  a:nth-of-type(2) .logo {
+    animation: logo-spin infinite 20s linear;
+  }
+}
+
+.card {
+  padding: 2em;
+}
+
+.read-the-docs {
+  color: #888;
+}
+
+
+/* Form container
+.form-container {
+  max-width: 1200px;
+  margin: 40px auto;
+  padding: 30px;
+  border-radius: 10px;
+  background: #ffffff;
+  box-shadow: 0 10px 25px rgba(236, 239, 240, 0.445);
+  font-family: Arial, sans-serif;
+} */
+
+/* Title */
+/* .form-container h1 {
+  text-align: center;
+  margin-bottom: 25px;
+  color: #333;
+} */
+
+/* Labels */
+/* .form-container label {
+  font-weight: 600;
+  color: #444;
+}
+.gender-group label {
+  font-weight: 600;
+  color: #444;
+} */
+
+/* Inputs */
+/* .form-container input[type="text"],
+.form-container input[type="email"],
+.form-container input[type="number"] {
+  width: 100%;
+  padding: 10px;
+  margin-top: 6px;
+  margin-bottom: 15px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+  font-size: 14px;
+} */
+
+/* Focus effect */
+/* .form-container input:focus {
+  outline: none;
+  border-color: #4f46e5;
+} */
+
+/* Gender section */
+/* .gender-group {
+  margin-bottom: 20px;
+} */
+
+/* .gender-group label {
+  margin-right: 15px;
+  font-weight: normal;
+} */
+
+/* Buttons */
+/* .btn-group {
+  display: flex;
+  gap: 10px;
+}
+
+.btn-submit {
+  flex: 1;
+  padding: 10px;
+  background: #4f46e5;
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 15px;
+}
+
+.btn-submit:hover {
+  background: #4338ca;
+} */
+
+/* .btn-clear {
+  flex: 1;
+  padding: 10px;
+  background: #e5e7eb;
+  color: #111;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.btn-clear:hover {
+  background: #d1d5db;
+} */
+
+/* Output section */
+/* .output {
+  margin-top: 25px;
+  padding-top: 15px;
+  border-top: 1px solid #160909;
+  color: #111; */
+  /* border: 1px solid; */
+/* } */
+
+/* .output table {
+  
+  margin: 5px;
+  color: #555;
+} */
