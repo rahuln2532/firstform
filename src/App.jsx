@@ -7,7 +7,9 @@ import MovingDot from './pointer'
 import Array from './array'
 import Formarray from './formArray'
 import App1 from './from3'
-import Card from './card'
+import Card from './card1'
+import New from './form4'
+import Router from './router'
 
 function App() {
   const arr= [];
@@ -58,9 +60,10 @@ function App() {
 
      {/* <Array /> */}
      {/* <Formarray /> */}
-     <App1 />
+     {/* <App1 /> */}
+     {/* <New /> */}
     
-
+     <Router/>
 
     </>
   )
