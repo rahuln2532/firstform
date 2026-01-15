@@ -1,11 +1,11 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-//import { useDebounce } from "use-debounce";
-
-
+import useConvertImage from "../imageConverter";
+import convertImage from "../imageConverter";
 
 
 export default function Create() {
+
     const initial = {
         id: "",
         pname: "",
@@ -15,81 +15,50 @@ export default function Create() {
     }
 
     const [formdata, setFormdata] = useState(initial);
-    const [data, setData] = useState([]);
     const navigate = useNavigate();
 
-    const convertImage = (file) => {
-
-        return new Promise((resolve) => {
-            const reader = new FileReader();
-            reader.readAsDataURL(file);
-            reader.onerror = () => {
-                console.error("FileReader error:", reader.error);
-            };
-            reader.onload = () => resolve(reader.result);
-        });
-    };
-
-    //     // const [demo, setDemo] = useState({
-    //     //     value: "",
-    //     //     min: "",
-    //     //     max: "",
-    //     // });
-
-    //     // //const debounceValue = useDebounce(demo, 500);
-    //     // const[debounceValue]=useDebounce(demo,500)
-
-    //     // const [item, setItem] = useState([]);
+    const activeindex = JSON.parse(localStorage.getItem('activeindex'));
+    const localData = JSON.parse(localStorage.getItem('localdata'));
 
     const handleSubmit = (e) => {
+
         e.preventDefault();
 
-        if (formdata.id) {
-            const updateData = data.map((value, index) => {
-                if (value.id === formdata.id) {
+        if (activeindex) {
+            const updateData = localData.map((value, index) => {
+                if (value.id === Number(activeindex)) {
                     return formdata;
 
                 }
                 return value;
-            })
-
-            setData(updateData);
-            setFormdata(initial);
-
-            navigate("/")
+            });
+            const stringifyData = JSON.stringify(updateData);
+            localStorage.setItem("localdata", stringifyData);
+            localStorage.removeItem('activeindex');
+            navigate('/', { replace:true});
             return;
         }
 
         let id = Math.random();
-        const updateData = [...data, { ...formdata, id: id }];
-        setData(updateData);
-        setFormdata(initial);
 
         const prev = JSON.parse(localStorage.getItem("localdata")) || [];
-        console.log(prev)
-        const updateValue = [...prev,{ ...formdata, id: id }]
+        const updateValue = [...prev, { ...formdata, id: id }]
         const stringifyData = JSON.stringify(updateValue);
         localStorage.setItem('localdata', stringifyData)
 
-        navigate("/")
+        navigate("/");
     }
 
-    // // const handleDelete = (id1) => {
+    useEffect(() => {
 
-    // //     const arr = data.filter((num, index) => num.id !== id1);
-    // //     setData(arr);
+        if (activeindex && localData) {
 
-    // //     //setData((prev) => prev.filter((num, index) => num.id !== id1));
-
-
-    // // }
-
-
-    // // const handleUpdate = (id) => {
-    // //     const item = data.find(d => d.id === id);
-    // //     setFormdata(item);
-
-    // // }
+            const updatedData = localData.find((value, index) => value.id === Number(activeindex));
+            if (updatedData) {
+                setFormdata(updatedData);
+            }
+        }
+    }, [activeindex]);
 
 
     return (
@@ -128,8 +97,9 @@ export default function Create() {
                                         <div className="mt-4 flex text-sm/6  relative cursor-pointer rounded-md bg-transparent font-semibold text-indigo-400 focus-within:outline-2 focus-within:outline-offset-2 focus-within:outline-indigo-500 hover:text-indigo-300" >
                                             <span>Upload a file</span>
                                             <input id="file-upload" accept="image/*" type="file" name="file-upload" onChange={async (e) => {
-
-                                                const fileUrl = await convertImage(e.target.files[0]);
+                                                const file = e.target.files[0]
+                                                //use 3rd party function . its define in different file #convertImage
+                                                const fileUrl = await convertImage(file);
 
                                                 setFormdata({ ...formdata, img: fileUrl });
 

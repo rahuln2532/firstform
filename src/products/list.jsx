@@ -6,74 +6,61 @@ import Card from "./card";
 export default function List() {
 
     const navigate = useNavigate();
-    const [data, setData] = useState()
+    const [data, setData] = useState([])
 
-
-    // 
     useEffect(() => {
         const local = JSON.parse(localStorage.getItem("localdata")) || [];
-       console.log(local);
         setData(local);
     }, []);
 
-   // console.log(data);
     const [demo, setDemo] = useState({
         value: "",
         min: "",
         max: "",
     });
 
-    //const debounceValue = useDebounce(demo, 500);
-    const[debounceValue]=useDebounce(demo,500)
+    const [debounceValue] = useDebounce(demo, 500)
 
     const [item, setItem] = useState([]);
 
 
     const handleFilter = () => {
-            let newItem = data;
-           // console.log('hello');
 
-            if (debounceValue.value && debounceValue.value != "") {
-                newItem = newItem.filter((d) => d.pname.includes(debounceValue.value) || d.des.includes(debounceValue.value) || d.price.includes(debounceValue.value));
+        let newItem = data;
+        if (debounceValue.value && debounceValue.value != "") {
+            newItem = newItem.filter((d) => d.pname.includes(debounceValue.value) || d.des.includes(debounceValue.value) || d.price.includes(debounceValue.value));
 
-            } if (debounceValue.max !== '' || debounceValue.min !== '') {
-                if (debounceValue.max !== '' && debounceValue.min !== '') {
-                    newItem = newItem.filter((d) => d.price >= Number(debounceValue.min) && d.price <= Number(debounceValue.max));
+        } if (debounceValue.max !== '' || debounceValue.min !== '') {
+            if (debounceValue.max !== '' && debounceValue.min !== '') {
+                newItem = newItem.filter((d) => d.price >= Number(debounceValue.min) && d.price <= Number(debounceValue.max));
 
-                } else if (debounceValue.min && debounceValue.min !== '') {
-                    newItem = newItem.filter((d) => d.price >= Number(debounceValue.min));
+            } else if (debounceValue.min && debounceValue.min !== '') {
+                newItem = newItem.filter((d) => d.price >= Number(debounceValue.min));
 
-                } else if (debounceValue.max && debounceValue.max !== '') {
-                    newItem = newItem.filter((d) => d.price <= Number(debounceValue.max));
-                }
+            } else if (debounceValue.max && debounceValue.max !== '') {
+                newItem = newItem.filter((d) => d.price <= Number(debounceValue.max));
             }
-
-            setItem(newItem);
-           // console.log(debounceValue)
-
-            //console.log(newItem);
         }
 
-        useEffect(() => {
-            handleFilter();
+        setItem(newItem);
+    }
 
-        }, [debounceValue, data])
+    useEffect(() => {
+        handleFilter();
+
+    }, [debounceValue, data])
 
     const handleDelete = (id1) => {
 
         const arr = data.filter((num, index) => num.id !== id1);
         setData(arr);
-        localStorage.setItem('localdata',JSON.stringify(arr));
-
-        //setData((prev) => prev.filter((num, index) => num.id !== id1));
-
+        localStorage.setItem('localdata', JSON.stringify(arr));
 
     }
 
-
     const handleUpdate = (id) => {
-        const item = data.find(d => d.id === id);
-        setFormdata(item);
+        localStorage.setItem('activeindex', id);
+        navigate('/create')
 
     }
     return (
@@ -119,22 +106,6 @@ export default function List() {
 
                 </div>
             </div>
-
-
-            {/* 
-            <div className="mt-6 grid grid-cols-1 gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-4 xl:gap-x-8">
-                {
-                    sort.length > 0 ?
-                        sort.map((value) =>
-                             <Card key={value.id} value={value} handleDelete={(id) => handleDelete(id)} handleUpdate={() => handleUpdate(value.id)} />
-                        ) :
-                        data.map((value) =>
-                            <Card key={value.id} value={value} handleDelete={(id) => handleDelete(id)} handleUpdate={() => handleUpdate(value.id)} />
-                        )
-                }
-            </div>*/}
-
-
 
             <div className="mt-6 grid grid-cols-1 gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-4 xl:gap-x-8">
 

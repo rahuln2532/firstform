@@ -1,9 +1,7 @@
 import { MdDeleteForever, MdEdit } from "react-icons/md";
 function Card({ value, handleDelete ,handleUpdate}) {
-    // console.log(value.id);
     return (
         <>
-         {/* {value.id < 0 ? */}
             <div>
                 <img src={value.img? value.img:null} alt="Image not Found" className="aspect-square w-full rounded-md bg-gray-200 object-cover  lg:h-80" />
                 <div className="mt-4 flex justify-between">
@@ -23,10 +21,7 @@ function Card({ value, handleDelete ,handleUpdate}) {
                     </div>
                 </div>
             </div>
-             {/* : <h1 className="justify-center"> Data Not Found</h1>} */}
         </>
     )
 }
 export default Card;
-// onClick={handleDelete(value.id)} 
-// , handleDelete 
