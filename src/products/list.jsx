@@ -8,6 +8,7 @@ export default function List() {
     const navigate = useNavigate();
     const [data, setData] = useState()
 
+
     // 
     useEffect(() => {
         const local = JSON.parse(localStorage.getItem("localdata")) || [];
