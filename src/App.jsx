@@ -10,6 +10,8 @@ import App1 from './from3'
 import Card from './card1'
 import New from './form4'
 import Router from './router'
+import ProductProvider from './usingcontextProduct.jsx/context'
+// import ProductProvider from './usingcontextProduct.jsx/context'
 
 function App() {
   const arr= [];
@@ -62,8 +64,11 @@ function App() {
      {/* <Formarray /> */}
      {/* <App1 /> */}
      {/* <New /> */}
-    
-     <Router/>
+    <ProductProvider>
+      <Router/>
+    </ProductProvider>
+
+     
 
     </>
   )
