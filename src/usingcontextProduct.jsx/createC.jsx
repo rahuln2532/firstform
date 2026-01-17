@@ -1,8 +1,10 @@
 import { useContext, useEffect, useState } from "react";
 
 //import { useDebounce } from 'use-debounce';
-import { ProductContext } from "./context";
+//import { ProductContext } from "./context";
+
 import { useNavigate } from "react-router-dom";
+import { ProductContext } from "../App";
 
 export default function CreateC() {
     

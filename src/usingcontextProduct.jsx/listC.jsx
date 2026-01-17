@@ -4,13 +4,14 @@ import { IoSearch } from "react-icons/io5";
 import { SlRefresh } from "react-icons/sl";
 import Card from "./cardC";
 import { useDebounce } from "use-debounce";
-import { ProductContext } from "./context";
+
 import { useNavigate } from "react-router-dom";
+import { ProductContext } from "../App";
 
 
 export default function Listc() {
     const navigate=useNavigate();
-    
+
     const { data, setData, formdata, setFormdata, initial } =
     useContext(ProductContext);
 

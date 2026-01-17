@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { createContext, useState } from 'react'
 import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
 import './App.css'
@@ -10,12 +10,24 @@ import App1 from './from3'
 import Card from './card1'
 import New from './form4'
 import Router from './router'
-import ProductProvider from './usingcontextProduct.jsx/context'
-// import ProductProvider from './usingcontextProduct.jsx/context'
- 
-function App() {
-  const arr= [];
 
+//import ProductProvider from './usingcontextProduct.jsx/context'
+// import ProductProvider from './usingcontextProduct.jsx/context'
+
+export const ProductContext = createContext();
+
+function App() {
+
+const initial = {
+    id: "",
+    pname: "",
+    price: "",
+    des: "",
+    img: "",
+  };
+
+  const [formdata, setFormdata] = useState(initial);
+  const [data, setData] = useState([]);
   // const double=(num)=> {
   //    console.log(num*2);
   // }
@@ -64,10 +76,12 @@ function App() {
      {/* <Formarray /> */}
      {/* <App1 /> */}
      {/* <New /> */}
-    <ProductProvider>
+    {/* <ProductProvider>
+     
+    </ProductProvider> */}
+      <ProductContext.Provider value={{data,setData,formdata,setFormdata,initial}} >
       <Router/>
-    </ProductProvider>
-
+    </ProductContext.Provider>
      
 
     </>
