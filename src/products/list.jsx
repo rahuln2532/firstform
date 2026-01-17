@@ -1,12 +1,19 @@
 import { useEffect, useState } from "react";
-import { Navigate, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { useDebounce } from "use-debounce";
 import Card from "./card";
+
+function Submit() {
+  const status = useFormStatus();
+  return <button disabled={status.pending}>Submit</button>
+}
 
 export default function List() {
 
     const navigate = useNavigate();
     const [data, setData] = useState([])
+
+    
 
     useEffect(() => {
         const local = JSON.parse(localStorage.getItem("localdata")) || [];
@@ -66,7 +73,7 @@ export default function List() {
     return (
         <>
             <div className=" w-full flex justify-start">
-                <button type="button" onClick={() => navigate("/create")} className="outline-white p-10">
+                <button type="button"  onClick={() => navigate("/create")} className="outline-white p-10">
                     Add New Card
                 </button>
             </div>
