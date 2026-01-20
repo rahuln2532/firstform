@@ -2,6 +2,8 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { CreateForm, ProductList } from "../products";
 import App1 from "../from3";
 import { CreateContext, Product } from "../usingcontextProduct.jsx";
+import Navbar from "../navbar.jsx";
+import Footer from "../footer.jsx";
 //import { CreateContext, Product, ProductContext } from "../usingcontextProduct.jsx";
 
 
@@ -9,6 +11,7 @@ export default function Router() {
 return(
     <>
     <BrowserRouter>
+    <Navbar/>
         <Routes>
              <Route path="/"  element={<Product/>}/>
               <Route path="/createC" element={<CreateContext/>}/>
@@ -17,6 +20,7 @@ return(
               <Route path="/create" element={<CreateForm />} /> */}
            
         </Routes>
+        <Footer/>
     </BrowserRouter>
     </>
 )

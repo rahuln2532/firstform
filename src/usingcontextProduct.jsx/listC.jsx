@@ -10,16 +10,16 @@ import { ProductContext } from "../App";
 
 
 export default function Listc() {
-    const navigate=useNavigate();
+  const navigate = useNavigate();
 
-    const { data, setData, formdata, setFormdata, initial } =
+  const { data, setData, formdata, setFormdata, initial } =
     useContext(ProductContext);
 
-    const [demo, setDemo] = useState({
-      value: "",
-      min: "",
-      max: "",
-    });
+  const [demo, setDemo] = useState({
+    value: "",
+    min: "",
+    max: "",
+  });
 
   const [item, setItem] = useState([]);
   const [debounceValue] = useDebounce(demo, 500);
@@ -72,12 +72,14 @@ export default function Listc() {
 
   return (
     <>
-    <div className=" w-full flex justify-start">
-                <button type="button"  onClick={() => navigate("/createC")} className="outline-white p-10">
-                    Add New Card
-                </button>
-            </div>
-      <div className="w-full mt-6 flex justify-end">
+    <div className="px-4 sm:px-8 lg:px-20 pt-18 flex-auto">
+      <div className=" w-full flex flex-col sm:flex-row sm:items-center sm:justify-between">
+        <div>
+        <button type="button" onClick={() => navigate("/createC")} className="outline-white p-10">
+          Add New Card
+        </button>
+      </div>
+      <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between">
         <div>
           <input
             id="search"
@@ -113,6 +115,7 @@ export default function Listc() {
           />
         </div>
       </div>
+      </div>
 
       <div className="mt-6 grid grid-cols-1 gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-4 xl:gap-x-8">
         {item.length > 0 ? (
@@ -130,6 +133,8 @@ export default function Listc() {
           </div>
         )}
       </div>
+      </div>
+      
     </>
   );
 }

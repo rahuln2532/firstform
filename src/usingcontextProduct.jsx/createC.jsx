@@ -5,6 +5,7 @@ import { useContext, useEffect, useState } from "react";
 
 import { useNavigate } from "react-router-dom";
 import { ProductContext } from "../App";
+import Navbar from "../navbar";
 
 export default function CreateC() {
     
@@ -55,8 +56,13 @@ export default function CreateC() {
     }
 
     return (
+
         <>
-            <div className="border border-white/90 p-12 rounded-2xl">
+    
+        
+            {/* <div className=" border border-white/90 p-12 rounded-2xl"> */}
+                    <div className="px-8 sm:px-10 lg:px-20 pt-20">
+
                 <form onSubmit={handleSubmit}>
                     <h2 className="text-center text-4xl font-semibold text-white">Product Information</h2>
 
@@ -103,6 +109,7 @@ export default function CreateC() {
                     </div>
                 </form>
             </div>
+            
             
         </>
     )
