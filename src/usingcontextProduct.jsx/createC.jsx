@@ -8,7 +8,7 @@ import { ProductContext } from "../App";
 import Navbar from "../navbar";
 
 export default function CreateC() {
-    
+
     // const initial = {
     //     id: "",
     //     pname: "",
@@ -19,16 +19,16 @@ export default function CreateC() {
 
     // const [formdata, setFormdata] = useState(initial);
     // const [data, setData] = useState([]);
-    
 
-   
-    
+
+
+
     //const debounceValue = useDebounce(demo, 500);
-    
- const { data, setData, formdata, setFormdata, initial } =
-    useContext(ProductContext);
 
-    const navigate=useNavigate();
+    const { data, setData, formdata, setFormdata, initial } =
+        useContext(ProductContext);
+
+    const navigate = useNavigate();
 
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -58,10 +58,10 @@ export default function CreateC() {
     return (
 
         <>
-    
-        
-            {/* <div className=" border border-white/90 p-12 rounded-2xl"> */}
-                    <div className="px-8 sm:px-10 lg:px-20 pt-20">
+
+
+          
+            <div className=" flex-auto px-8 sm:px-10 lg:px-20 pt-20 pb-20 sm:ml-50">
 
                 <form onSubmit={handleSubmit}>
                     <h2 className="text-center text-4xl font-semibold text-white">Product Information</h2>
@@ -102,15 +102,14 @@ export default function CreateC() {
                                 </div>
                             </label>
                         </div>
-                    </div>
-
-                    <div className="w-full mt-6 flex items-center justify-end">
+                        <div className="w-full mt-6 flex items-center justify-end">
                         <button type="submit" className="rounded-md bg-indigo-500 px-3 py-2 text-sm font-semibold text-white focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-500">Submit</button>
+                    </div>
                     </div>
                 </form>
             </div>
-            
-            
+
+
         </>
     )
 }

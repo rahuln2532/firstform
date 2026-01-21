@@ -4,6 +4,7 @@ import App1 from "../from3";
 import { CreateContext, Product } from "../usingcontextProduct.jsx";
 import Navbar from "../navbar.jsx";
 import Footer from "../footer.jsx";
+import Sidebar from "../sidebar.jsx";
 //import { CreateContext, Product, ProductContext } from "../usingcontextProduct.jsx";
 
 
@@ -12,6 +13,7 @@ return(
     <>
     <BrowserRouter>
     <Navbar/>
+    <Sidebar/>
         <Routes>
              <Route path="/"  element={<Product/>}/>
               <Route path="/createC" element={<CreateContext/>}/>

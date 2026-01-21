@@ -72,10 +72,10 @@ export default function Listc() {
 
   return (
     <>
-    <div className="px-4 sm:px-8 lg:px-20 pt-18 flex-auto">
+    <div className="sm:ml-50 px-4 sm:px-8 lg:px-20 pt-18 flex-auto">
       <div className=" w-full flex flex-col sm:flex-row sm:items-center sm:justify-between">
         <div>
-        <button type="button" onClick={() => navigate("/createC")} className="outline-white p-10">
+        <button type="button" onClick={() => navigate("/createC")} className="bg-gray-50 text-white outline-white p-4 pt-2 pb-2">
           Add New Card
         </button>
       </div>
@@ -117,7 +117,7 @@ export default function Listc() {
       </div>
       </div>
 
-      <div className="mt-6 grid grid-cols-1 gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-4 xl:gap-x-8">
+      <div className="mt-6 grid grid-cols-1 gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-3 xl:gap-x-8 pb-20">
         {item.length > 0 ? (
           item.map((value) => (
             <Card

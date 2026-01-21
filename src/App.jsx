@@ -10,6 +10,7 @@ import App1 from './from3'
 import Card from './card1'
 import New from './form4'
 import Router from './router'
+import Sidebar from './sidebar'
 
 //import ProductProvider from './usingcontextProduct.jsx/context'
 // import ProductProvider from './usingcontextProduct.jsx/context'
@@ -67,7 +68,7 @@ const initial = {
   // // console.log(arr2);
   // console.log(arr);
   return (
-    <>
+    <>    <div  className='flex'>
   
       {/* <Form /> */}
       {/* <MovingDot />  */}
@@ -81,10 +82,13 @@ const initial = {
     </ProductProvider> */}
       <ProductContext.Provider value={{data,setData,formdata,setFormdata,initial}} >
       <Router/>
+      
     </ProductContext.Provider>
      
 
+    </div>
     </>
+
   )
 }
 
