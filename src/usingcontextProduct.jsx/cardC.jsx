@@ -1,9 +1,11 @@
 import { MdDeleteForever, MdEdit } from "react-icons/md";
-function Card({ value, handleDelete ,handleUpdate}) {
+function Card({ value, handleDelete, handleUpdate }) {
     return (
         <>
             <div className="overflow-hidden">
-                <img src={value.img? URL.createObjectURL(value.img):null} alt="Image not Found" className="aspect-square w-full rounded-md bg-gray-200 object-cover  lg:h-80" />
+                <img src={value.img ? value.img : null} alt="Image not Found" className="aspect-square w-full rounded-md bg-gray-200 object-cover  lg:h-80" />
+
+                {/* <img src={value.img? URL.createObjectURL(value.img):null} alt="Image not Found" className="aspect-square w-full rounded-md bg-gray-200 object-cover  lg:h-80" /> */}
                 <div className="mt-4 flex justify-between">
                     <div>
                         <h3 className="text-sm text-gray-100">
@@ -15,9 +17,9 @@ function Card({ value, handleDelete ,handleUpdate}) {
                     <div className="text-end">
                         <p className="text-sm pb-2 font-medium text-gray-100">${value.price}</p>
                         <span className="m-2">
-                            <button type="button" onClick={()=>handleDelete(value.id)} className="bg-red-500"><MdDeleteForever /></button>
+                            <button type="button" onClick={() => handleDelete(value.id)} className="bg-red-500"><MdDeleteForever /></button>
                         </span>
-                        <span><button type="button" onClick={()=>handleUpdate()} className="bg-green-700" ><MdEdit /></button></span>
+                        <span><button type="button" onClick={() => handleUpdate()} className="bg-green-700" ><MdEdit /></button></span>
                     </div>
                 </div>
             </div>

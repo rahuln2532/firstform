@@ -12,19 +12,39 @@ import { ProductContext } from "../App";
 export default function Listc() {
   const navigate = useNavigate();
 
-  const { data, setData, formdata, setFormdata, initial,demo,setDemo} =
+  const { data, setData, formdata, setFormdata, initial, demo, setDemo } =
     useContext(ProductContext);
-
+  //console.log(data);
   // const [demo, setDemo] = useState({
   //   value: "",
   //   min: "",
   //   max: "",
-  // });
+  // });2
+
+  useEffect(() => {
+    fetch("http://localhost:5000/products")
+      .then((res) => {
+        if (!res.ok) {
+          throw new Error("Failed to fetch products");
+        }
+        return res.json();
+      })
+      .then((value) => {
+        setData(value);
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+  }, []);
+
 
   const [item, setItem] = useState([]);
   const [debounceValue] = useDebounce(demo, 500);
 
   const handleDelete = (id1) => {
+    fetch(`http://localhost:5000/products/${id1}`, {
+    method: "DELETE",
+  })
     setData((prev) => prev.filter((num, index) => num.id !== id1));
   };
 
@@ -36,7 +56,7 @@ export default function Listc() {
 
   const handleFilter = () => {
     let newItem = data;
-    console.log(newItem);
+    //console.log(newItem);
 
     if (debounceValue.value && debounceValue.value != "") {
       newItem = newItem.filter(
@@ -61,9 +81,9 @@ export default function Listc() {
     }
 
     setItem(newItem);
-    console.log(debounceValue);
+    //console.log(debounceValue);
 
-    console.log(newItem);
+   // console.log(newItem);
   };
 
   useEffect(() => {
@@ -72,69 +92,69 @@ export default function Listc() {
 
   return (
     <>
-    <div className=" px-4 sm:px-8 lg:px-20 pt-18 flex-auto">
-      <div className=" w-full flex flex-col sm:flex-row sm:items-center sm:justify-between">
-        <div>
-        <button type="button" onClick={() => navigate("/createC")} className="bg-gray-50 text-white outline-white p-4 pt-2 pb-2">
-          Add New Card
-        </button>
-      </div>
-      <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between">
-        <div className="sm:hidden">
-          <input
-            id="search"
-            type="text"
-            value={demo.value}
-            onChange={(event) =>
-              setDemo({ ...demo, value: event.target.value })
-            }
-            className="block rounded-md bg-white/5 px-3 mt-2 py-1.5 text-base text-white outline-1 -outline-offset-1 outline-white/10 placeholder:text-gray-500 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-500 sm:text-sm/6"
-            placeholder="Search..."
-          />
-        </div>
-
-        <div>
-          <input
-            id="search"
-            type="number"
-            value={demo.min}
-            onChange={(event) => setDemo({ ...demo, min: event.target.value })}
-            className="block rounded-md ml-2 w-20 bg-white/5 px-3 mt-2 py-1.5 text-base text-white outline-1 -outline-offset-1 outline-white/10 placeholder:text-gray-500 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-500 sm:text-sm/6"
-            placeholder="min"
-          />
-        </div>
-        <p className="mt-3 ml-2">To</p>
-        <div>
-          <input
-            id="search"
-            type="number"
-            value={demo.max}
-            onChange={(event) => setDemo({ ...demo, max: event.target.value })}
-            className="block rounded-md ml-2 w-20 bg-white/5 px-3 mt-2 py-1.5 text-base text-white outline-1 -outline-offset-1 outline-white/10 placeholder:text-gray-500 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-500 sm:text-sm/6"
-            placeholder="max"
-          />
-        </div>
-      </div>
-      </div>
-
-      <div className="mt-6 grid grid-cols-1 gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-3 xl:gap-x-8 pb-20">
-        {item.length > 0 ? (
-          item.map((value) => (
-            <Card
-              key={value.id}
-              value={value}
-              handleDelete={(id) => handleDelete(id)}
-              handleUpdate={() => handleUpdate(value.id)}
-            />
-          ))
-        ) : (
-          <div className="sm:col-span-2 lg:col-span-4 text-center">
-            <h3>Data Not Found</h3>
+      <div className=" px-4 sm:px-8 lg:px-20 pt-18 flex-auto">
+        <div className=" w-full flex flex-col sm:flex-row sm:items-center sm:justify-between">
+          <div>
+            <button type="button" onClick={() => navigate("/createC")} className="bg-gray-50 text-white outline-white p-4 pt-2 pb-2">
+              Add New Card
+            </button>
           </div>
-        )}
+          <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between">
+            <div className="sm:hidden">
+              <input
+                id="search"
+                type="text"
+                value={demo.value}
+                onChange={(event) =>
+                  setDemo({ ...demo, value: event.target.value })
+                }
+                className="block rounded-md bg-white/5 px-3 mt-2 py-1.5 text-base text-white outline-1 -outline-offset-1 outline-white/10 placeholder:text-gray-500 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-500 sm:text-sm/6"
+                placeholder="Search..."
+              />
+            </div>
+
+            <div>
+              <input
+                id="search"
+                type="number"
+                value={demo.min}
+                onChange={(event) => setDemo({ ...demo, min: event.target.value })}
+                className="block rounded-md ml-2 w-20 bg-white/5 px-3 mt-2 py-1.5 text-base text-white outline-1 -outline-offset-1 outline-white/10 placeholder:text-gray-500 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-500 sm:text-sm/6"
+                placeholder="min"
+              />
+            </div>
+            <p className="mt-3 ml-2">To</p>
+            <div>
+              <input
+                id="search"
+                type="number"
+                value={demo.max}
+                onChange={(event) => setDemo({ ...demo, max: event.target.value })}
+                className="block rounded-md ml-2 w-20 bg-white/5 px-3 mt-2 py-1.5 text-base text-white outline-1 -outline-offset-1 outline-white/10 placeholder:text-gray-500 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-500 sm:text-sm/6"
+                placeholder="max"
+              />
+            </div>
+          </div>
+        </div>
+
+        <div className="mt-6 grid grid-cols-1 gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-3 xl:gap-x-8 pb-20">
+          {item.length > 0 ? (
+            item.map((value) => (
+              <Card
+                key={value.id}
+                value={value}
+                handleDelete={(id) => handleDelete(value.id)}
+                handleUpdate={() => handleUpdate(value.id)}
+              />
+            ))
+          ) : (
+            <div className="sm:col-span-2 lg:col-span-4 text-center">
+              <h3>Data Not Found</h3>
+            </div>
+          )}
+        </div>
       </div>
-      </div>
-      
+
     </>
   );
 }
