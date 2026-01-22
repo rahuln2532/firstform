@@ -12,14 +12,14 @@ import { ProductContext } from "../App";
 export default function Listc() {
   const navigate = useNavigate();
 
-  const { data, setData, formdata, setFormdata, initial } =
+  const { data, setData, formdata, setFormdata, initial,demo,setDemo} =
     useContext(ProductContext);
 
-  const [demo, setDemo] = useState({
-    value: "",
-    min: "",
-    max: "",
-  });
+  // const [demo, setDemo] = useState({
+  //   value: "",
+  //   min: "",
+  //   max: "",
+  // });
 
   const [item, setItem] = useState([]);
   const [debounceValue] = useDebounce(demo, 500);
@@ -72,7 +72,7 @@ export default function Listc() {
 
   return (
     <>
-    <div className="sm:ml-50 px-4 sm:px-8 lg:px-20 pt-18 flex-auto">
+    <div className=" px-4 sm:px-8 lg:px-20 pt-18 flex-auto">
       <div className=" w-full flex flex-col sm:flex-row sm:items-center sm:justify-between">
         <div>
         <button type="button" onClick={() => navigate("/createC")} className="bg-gray-50 text-white outline-white p-4 pt-2 pb-2">
@@ -80,7 +80,7 @@ export default function Listc() {
         </button>
       </div>
       <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between">
-        <div>
+        <div className="sm:hidden">
           <input
             id="search"
             type="text"

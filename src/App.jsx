@@ -11,6 +11,7 @@ import Card from './card1'
 import New from './form4'
 import Router from './router'
 import Sidebar from './sidebar'
+import Postdata from './api/fetchthenmethod'
 
 //import ProductProvider from './usingcontextProduct.jsx/context'
 // import ProductProvider from './usingcontextProduct.jsx/context'
@@ -29,6 +30,13 @@ const initial = {
 
   const [formdata, setFormdata] = useState(initial);
   const [data, setData] = useState([]);
+  const [demo, setDemo] = useState({
+    value: "",
+    min: "",
+    max: "",
+  });
+
+  
   // const double=(num)=> {
   //    console.log(num*2);
   // }
@@ -68,7 +76,7 @@ const initial = {
   // // console.log(arr2);
   // console.log(arr);
   return (
-    <>    <div  className='flex'>
+    <>    <div >
   
       {/* <Form /> */}
       {/* <MovingDot />  */}
@@ -80,9 +88,9 @@ const initial = {
     {/* <ProductProvider>
      
     </ProductProvider> */}
-      <ProductContext.Provider value={{data,setData,formdata,setFormdata,initial}} >
+      <ProductContext.Provider value={{data,setData,formdata,setFormdata,initial,demo,setDemo}} >
       <Router/>
-      
+      {/* <Postdata/> */}
     </ProductContext.Provider>
      
 

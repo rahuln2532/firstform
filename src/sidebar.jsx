@@ -32,7 +32,7 @@ export default function Sidebar() {
                             <span className={expanded?"text-sm font-medium":"hidden overflow-hidden"}>Home</span>
                         </li></Link>
 
-                        <Link to="./"><li className="flex items-center gap-3 rounded-md px-3 py-2 hover:bg-gray-100 text-black cursor-pointer">
+                        <Link to="/"><li className="flex items-center gap-3 rounded-md px-3 py-2 hover:bg-gray-100 text-black cursor-pointer">
                             <MdOutlineProductionQuantityLimits className="text-xl" />
                             <span className={expanded?"text-sm font-medium":"hidden overflow-hidden"}>Product</span>
                         </li></Link>
