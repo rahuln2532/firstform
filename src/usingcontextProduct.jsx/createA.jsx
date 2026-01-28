@@ -8,82 +8,27 @@ import { ProductContext } from "../App";
 import Navbar from "../navbar";
 import Postdata from "../api/fetchthenmethod";
 import convertImage from "../imageConverter";
+import axios from "axios";
 
 export default function CreateC() {
 
-    // const initial = {
-    //     id: "",
-    //     pname: "",
-    //     price: "",
-    //     des: "",
-    //     img: "",
-    // }
-
-    // const [formdata, setFormdata] = useState(initial);
-    // const [data, setData] = useState([]);
-
-
-
-
-    //const debounceValue = useDebounce(demo, 500);
+   
 
     const { data, setData, formdata, setFormdata, initial } =
         useContext(ProductContext);
 
     const navigate = useNavigate();
 
-    // useEffect(() => {
-    //     Postdata;
-    // }, [data])
-
-    //     const handleSubmit = async(e) => {
-    //         e.preventDefault();
-
-    //         if (formdata.id) {
-    //             const updateData = data.map((value, index) => {
-    //                 if (value.id === formdata.id) {
-    //                     return formdata;
-
-    //                 }
-    //                 return value;
-    //             })
-
-    //             setData(updateData);
-    //             setFormdata(initial);
-    //             navigate('/');
-    //             return;
-    //         }
-
-    //         let id = Math.random();
-
-    //         const updateData = [...data, { ...formdata, id: id }];
-
-    //             setData(updateData);
-    //             setFormdata(initial);
-    //             navigate('/');
-
-    // }
-
     const handleSubmit = async (e) => {
         e.preventDefault();
+        const apiKey=("http://localhost:5000/products")
         if (formdata.id) {
            
             try {
-                const res = await fetch(`http://localhost:5000/products/${formdata.id}`, {
-                    method: "PATCH",
-                    headers: {
-                        "Content-Type": "application/json",
-                    },
-                    body: JSON.stringify(formdata),
-                });
+                
+                const response=await axios.patch(`${apiKey}/${formdata.id}`,formdata);
 
-                if (!res.ok) {
-                    throw new Error("Failed to add product");
-                }
-
-                const result = await res.json();
-
-                setData([...data, result]);
+                setData([...data, response]);
                 setFormdata(initial);
                 navigate("/");
 
@@ -97,20 +42,7 @@ export default function CreateC() {
         const newProduct = {...formdata,id: Math.random()};
 
         try {
-            const res = await fetch("http://localhost:5000/products", {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json",
-                },
-                body: JSON.stringify(newProduct),
-            });
-
-            if (!res.ok) {
-                throw new Error("Failed to add product");
-            }
-
-            //const result = await res.json();
-            // setData([...data, result]);
+             await axios.post(apiKey,newProduct);
             
             setFormdata(initial);
             navigate("/");

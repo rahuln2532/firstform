@@ -21,7 +21,7 @@ export default function Router() {
                         <Layout><Product /></Layout>
                     } />
                     <Route path="/createC" element={
-                        <Layout><CreateContext /></Layout>} />
+                        <Layout><CreateContext/></Layout>} />
                     {/* 
               <Route path="/" element={<ProductList />} />
               <Route path="/create" element={<CreateForm />} /> */}

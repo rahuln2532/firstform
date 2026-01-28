@@ -1,5 +1,6 @@
 import { MdDeleteForever, MdEdit } from "react-icons/md";
 function Card({ value, handleDelete, handleUpdate }) {
+    //console.log(value);
     return (
         <>
             <div className="overflow-hidden">

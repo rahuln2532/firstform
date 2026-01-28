@@ -7,6 +7,7 @@ import { useDebounce } from "use-debounce";
 
 import { useNavigate } from "react-router-dom";
 import { ProductContext } from "../App";
+import axios from "axios";
 
 
 export default function Listc() {
@@ -14,38 +15,33 @@ export default function Listc() {
 
   const { data, setData, setFormdata, demo, setDemo } =
     useContext(ProductContext);
-  //console.log(data);
-  // const [demo, setDemo] = useState({
-  //   value: "",
-  //   min: "",
-  //   max: "",
-  // });2
+
+  const api = "http://localhost:5000/products"
+
+  const loadData = async () => {
+    try {
+      const response = await axios.get(api);
+      setData(response.data);
+      
+    }
+    catch (error) {
+      console.error(error);
+    }
+  }
 
   useEffect(() => {
-    fetch("http://localhost:5000/products")
-      .then((res) => {
-        if (!res.ok) {
-          throw new Error("Failed to fetch products");
-        }
-        return res.json();
-      })
-      .then((value) => {
-        setData(value);
-      })
-      .catch((error) => {
-        console.error(error);
-      });
+    loadData();
   }, []);
 
 
   const [item, setItem] = useState([]);
   const [debounceValue] = useDebounce(demo, 500);
 
-  const handleDelete = (id1) => {
-    fetch(`http://localhost:5000/products/${id1}`, {
-      method: "DELETE",
-    })
+  const handleDelete = async(id1) => {
+
+    await axios.delete(`${api}/${id1}`) 
     setData((prev) => prev.filter((num, index) => num.id !== id1));
+
   };
 
   const handleUpdate = (id) => {
@@ -54,10 +50,9 @@ export default function Listc() {
     navigate("/createA");
   };
 
-  const handleFilter = () => {
+  const handleFilter = () => 
+    {
     let newItem = data;
-    //console.log(newItem);
-
     if (debounceValue.value && debounceValue.value != "") {
       newItem = newItem.filter(
         (d) =>
@@ -81,9 +76,6 @@ export default function Listc() {
     }
 
     setItem(newItem);
-    //console.log(debounceValue);
-
-    // console.log(newItem);
   };
 
   useEffect(() => {
@@ -95,7 +87,7 @@ export default function Listc() {
       <div className=" px-4 sm:px-8 lg:px-20 pt-18 flex-auto">
         <div className=" w-full flex flex-col sm:flex-row sm:items-center sm:justify-between">
           <div>
-            <button type="button" onClick={() => navigate("/createC")} className="bg-gray-50 text-white outline-white p-4 pt-2 pb-2">
+            <button type="button" onClick={() => navigate("/createA")} className="bg-gray-50 text-white outline-white p-4 pt-2 pb-2">
               Add New Card
             </button>
           </div>
